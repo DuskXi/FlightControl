@@ -1,0 +1,18 @@
+{
+  "drone": {
+    "serialName": "/dev/ttyAMA0",
+    "baudRate": "115200",
+    "settingBaudRate": "9600",
+    "channel": 14,
+    "templateSettingCommand": "DL-30 {baudRate} {channel} B",
+    "dictBaudRate": {
+      "2400": "0024",
+      "4800": "0048",
+      "14400": "0144",
+      "19200": "0192",
+      "38400": "0384",
+      "57600": "0576",
+      "115200": "1152"
+    }
+  }
+}
