@@ -22,7 +22,7 @@ class RadioConnector:
             configPath = os.path.join(re.sub(r'[^\\/]+$', '', os.path.realpath(__file__)), "config.json")
 
         self.configPath = configPath
-        self.config = json.loads(readFile(configPath))
+        self.config = json.loads(readFile(configPath))["drone"]
         # read config
         self.channel = self.config['channel']
         self.baudRate = self.config['baudRate']
