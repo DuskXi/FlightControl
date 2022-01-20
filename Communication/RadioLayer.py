@@ -40,6 +40,7 @@ class RadioConnector:
         self.connectionStatus = ConnectionStatus.Unknown
 
         self.enableMessageLog = False
+        self.callbackMessageUpdate = None
 
     def _openSerial(self, deviceName, baudRate):
         self.serial = serial.Serial(deviceName, baudRate, timeout=self.timeout)
@@ -106,6 +107,8 @@ class RadioConnector:
                         logger.debug(f"Message Log:")
                         logger.debug(f"    Received message(Bytes): {decodedData}")
                         logger.debug(f"    Received message(Decoded): {decodedData.decode('utf-8')}")
+                if self.callbackMessageUpdate is not None:
+                    self.callbackMessageUpdate()
 
     def startRadioCommunication(self):
         self._openSerial(self.serialName, self.baudRate)
@@ -115,6 +118,12 @@ class RadioConnector:
     def stopRadioCommunication(self):
         self._closeSerial()
         self.recvThread.join()
+
+    def hasMessage(self):
+        return len(self.recvBuffer) > 0
+
+    def getMessage(self):
+        return self.recvBuffer.pop(0)
 
 
 class ConnectionStatus(Enum):
