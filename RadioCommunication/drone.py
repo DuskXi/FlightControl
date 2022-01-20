@@ -40,9 +40,11 @@ class RadioConnector:
 
     def _openSerial(self, deviceName, baudRate):
         self.serial = serial.Serial(deviceName, baudRate, timeout=self.timeout)
+        self.connectionStatus = ConnectionStatus.Connected
 
     def _closeSerial(self):
         if self.serial is not None:
+            self.connectionStatus = ConnectionStatus.Disconnected
             self.serial.close()
 
     def setRadio(self):
