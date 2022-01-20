@@ -8,7 +8,7 @@ import os
 import re
 
 from loguru import logger
-from RadioCommunication.datapacket import DataPacket
+from Communication.DataPacket import DataPacket
 
 
 def readFile(fileName, encoding='utf-8'):
